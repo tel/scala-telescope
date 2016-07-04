@@ -5,16 +5,22 @@
 
 Is hard!
 
-## Equality
-
-We can restore the Equality type as
+## Mezzolens constructors
 
 ```haskell
-type Equality s t a b = forall p. p a b -> p s t
-```
+iso :: (s -> a) -> (b -> t) -> Iso s t a b -- (done)
 
-Except there is not a common supertype to all typeclasses at all 
-kinds (no `Any[_[_,_]`) so this will break all of the machinery.
+lens :: (s -> a) -> (b -> s -> t) -> Lens s t a b -- (done)
+
+prism :: (s -> Either t a) -> (b -> t) -> Prism s t a b -- (done)
+
+affineTraversal :: (s -> Either t a) -> (b -> s -> t) -> AffineTraversal s t a b
+
+traversal :: (forall f. Applicative f => (a -> f b) -> s -> f t) -> Traversal s t a b
+
+sec :: ((a -> b) -> (s -> t)) -> SEC s t a b
+sec :: Optic[=>][s, t, a, b] -> SEC s t a b -- reduces to function?
+```
 
 ## Traversal
 

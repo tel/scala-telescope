@@ -11,4 +11,3 @@ trait Optic[-C[_[_, _]], S, T, A, B] {
   def apply[~>[_, _]](p: A ~> B)(implicit ev: C[~>]): S ~> T
 
 }
-

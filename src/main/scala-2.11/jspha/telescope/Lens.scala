@@ -1,7 +1,7 @@
 package jspha.telescope
 
 import scala.language.higherKinds
-import cats.functor.Strong
+import cats.functor.{Profunctor, Strong}
 import jspha.telescope.impl.{Forget, Optic}
 
 trait Lens[S, T, A, B]
@@ -23,6 +23,10 @@ trait Lens[S, T, A, B]
 }
 
 object Lens {
+
+  trait Closed[~>[_,_]] extends Profunctor[~>] {
+    def closed[A, B, C](p: A ~> B): (C => A) ~> (C => B)
+  }
 
   def apply[S, T, A, B](getf: S => A, putf: (B, S) => T) =
     new Lens[S, T, A, B] {

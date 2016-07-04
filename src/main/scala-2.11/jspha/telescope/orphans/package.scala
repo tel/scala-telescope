@@ -1,8 +1,9 @@
-package jspha.telescope.deps
+package jspha.telescope
 
 import cats.functor.{Profunctor, Strong}
+import jspha.telescope.deps.Choice
 
-object Orphans {
+package object orphans {
 
   implicit object functionIsProfunctor extends functionIsProfunctor
   trait functionIsProfunctor extends Profunctor[Function1] {

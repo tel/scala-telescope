@@ -8,9 +8,11 @@ import cats.data.Xor
 trait Prism[S, T, A, B]
   extends Optic[Choice, S, T, A, B] {
 
-  def build(b: B): T = ???
+  def build(b: B): T =
+    ???
 
-  def select(s: S): A Xor T = ???
+  def select(s: S): A Xor T =
+    ???
 
 }
 

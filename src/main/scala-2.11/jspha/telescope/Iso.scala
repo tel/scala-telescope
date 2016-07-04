@@ -9,13 +9,15 @@ trait Iso[S, T, A, B]
     with Lens[S, T, A, B]
     with Prism[S, T, A, B] {
 
-  def to(s: S): A = ???
+  def to(s: S): A =
+    ???
 
-  def from(b: B): T = ???
+  def from(b: B): T =
+    ???
 
 }
 
-object Iso extends Optic.Ob[Profunctor, Iso] {
+object Iso {
 
   def apply[S, T, A, B](tof: S => A, fromf: B => T) =
     new Iso[S, T, A, B] {

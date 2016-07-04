@@ -1,6 +1,10 @@
 
 # Telescope
 
+## Composition
+
+Is hard!
+
 ## Equality
 
 We can restore the Equality type as
@@ -8,6 +12,9 @@ We can restore the Equality type as
 ```haskell
 type Equality s t a b = forall p. p a b -> p s t
 ```
+
+Except there is not a common supertype to all typeclasses at all 
+kinds (no `Any[_[_,_]`) so this will break all of the machinery.
 
 ## Traversal
 

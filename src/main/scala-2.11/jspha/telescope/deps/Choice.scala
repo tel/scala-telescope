@@ -11,5 +11,5 @@ trait Choice[~>[_, _]] extends Profunctor[~>] {
 }
 
 object Choice {
-  def apply[F[_, _]](implicit ev: Choice[F]): Choice[F] = ev
+  def apply[~>[_, _]](implicit ev: Choice[~>]): Choice[~>] = ev
 }

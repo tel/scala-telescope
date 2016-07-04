@@ -2,19 +2,23 @@ package jspha.telescope
 
 import scala.language.higherKinds
 import cats.functor.Strong
-import jspha.telescope.deps.Orphans
 import jspha.telescope.impl.{Forget, Optic}
 
 trait Lens[S, T, A, B]
   extends Optic[Strong, S, T, A, B] {
 
-  private lazy val F = new Forget[A]
+  // Only necessary when `get` is used.
+  private lazy val F =
+    new Forget[A]
 
-  def get(s: S) = apply[F.~>](F.ignore)(F.isStrong)(s)
+  def get(s: S) =
+    apply(F.ignore[B])(F.isStrong)(s)
 
-  def over(f: A => B)(s: S) = apply[Function1](f)(Orphans.functionIsStrong)(s)
+  def over(f: A => B)(s: S) =
+    apply(f)(orphans.functionIsStrong)(s)
 
-  def put(b: B, s: S) = over(_ => b)(s)
+  def put(b: B, s: S) =
+    over(_ => b)(s)
 
 }
 
